@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <title>
+            Alexis' Booking System Login Page
+        </title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+
+    <body>
+        <h1>
+            Login
+        </h1>
+
+        <form action="{{ url_for('submit_login') }}" method="POST">
+            <label for="email">Email Address</label><br>
+            <input type="email" id="email" name="email"><br>
+
+            <label for="password">Password</label><br>
+            <input type="password" id="password" name="password"><br>
+
+            <input type="submit" value="Submit">
+        </form>
+        
+    </body>
+</html>

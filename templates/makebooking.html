@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <title>
+            Alexis' Booking System Booking Booker
+        </title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+
+    <body>
+        <h1>
+            Make a Booking
+        </h1>
+
+        <form action="{{ url_for('submitbooking') }}" method="POST">
+            <label for="starttime">Start Time</label><br>
+            <input type="datetime-local" id="starttime" name="starttime"><br>
+
+            <label for="endtime">End Time</label><br>
+            <input type="datetime-local" id="endtime" name="endtime"><br>
+
+            <input type="submit" value="Submit">
+        </form>
+
+    </body>
+</html>
