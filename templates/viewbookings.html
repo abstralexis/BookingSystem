@@ -1,38 +1,40 @@
+<!DOCTYPE html>
 <!-- This is the booking viewing page. -->
 <html>
     <head>
         <title>
             Alexis' Booking System Bookings Viewer
         </title>
-        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     </head>
 
     <body>
-        <h1>
-            Your Bookings
-        </h1>
+        <div class="foreground" align="center">
+            <h1>
+                Your Bookings
+            </h1>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>Start Time</th>
-                    <th>End Time</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- 
-                    This is Jinja syntax. It iterates through
-                    the data we gave it from the server and puts it
-                    into the table.
-                -->
-                {% for row in data %}
-                <tr>
-                    <td>{{row[0]}}</td>
-                    <td>{{row[1]}}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-
+            <table>
+                <thead>
+                    <tr>
+                        <th>Start Time</th>
+                        <th>End Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- 
+                        This is Jinja syntax. It iterates through
+                        the data we gave it from the server and puts it
+                        into the table.
+                    -->
+                    {% for row in data %}
+                    <tr>
+                        <td>{{row[0]}}</td>
+                        <td>{{row[1]}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </body>
 </html>

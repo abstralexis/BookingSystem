@@ -1,32 +1,38 @@
+<!DOCTYPE html>
 <html>
     <head>
         <title>
             Alexis' Booking System Login Page
         </title>
-        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     </head>
 
     <body>
-        <h1>
-            Login
-        </h1>
+        <div class="foreground" align="center">
+            <h1>
+                Login
+            </h1>
 
-        <!--
-            This is the form for submitting a login. We use the
-            POST method, as well as the url_for() action. This 
-            makes the request for submission send to the route
-            we decided for the server function called 
-            submit_login.
-        -->
-        <form action="{{ url_for('submit_login') }}" method="POST">
-            <label for="email">Email Address</label><br>
-            <input type="email" id="email" name="email"><br>
+            {% if request.args.fail == "true" %}
+                <h3>Login failed. Please try again.</h3>
+            {% endif %}
 
-            <label for="password">Password</label><br>
-            <input type="password" id="password" name="password"><br>
+            <!--
+                This is the form for submitting a login. We use the
+                POST method, as well as the url_for() action. This 
+                makes the request for submission send to the route
+                we decided for the server function called 
+                submit_login.
+            -->
+            <form action="{{ url_for('submit_login') }}" method="POST">
+                <label for="email">Email Address</label><br>
+                <input class="input" type="email" id="email" name="email"><br><br>
 
-            <input type="submit" value="Submit">
-        </form>
-        
+                <label for="password">Password</label><br>
+                <input class="input" type="password" id="password" name="password"><br><br><br>
+
+                <input class="pushbutton" type="submit" value="Submit">
+            </form>
+        </div>
     </body>
 </html>

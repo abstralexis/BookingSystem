@@ -1,26 +1,32 @@
+<!DOCTYPE html>
 <html>
     <head>
         <title>
             Alexis' Booking System Booking Booker
         </title>
-        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     </head>
 
     <body>
-        <h1>
-            Make a Booking
-        </h1>
+        <div class="foreground" align="center">
+            <h1>
+                Make a Booking
+            </h1>
 
-        <!-- This once again uses HTML forms to submit a request. -->
-        <form action="{{ url_for('submitbooking') }}" method="POST">
-            <label for="starttime">Start Time</label><br>
-            <input type="datetime-local" id="starttime" name="starttime"><br>
+            {% if request.args.get("fail") == "true" %}
+            <h3>Booking request failed. Try another time.</h3>
+            {% endif %}
 
-            <label for="endtime">End Time</label><br>
-            <input type="datetime-local" id="endtime" name="endtime"><br>
+            <!-- This once again uses HTML forms to submit a request. -->
+            <form action="{{ url_for('submitbooking') }}" method="POST">
+                <label for="starttime">Start Time</label><br>
+                <input type="datetime-local" id="starttime" name="starttime"><br><br>
 
-            <input type="submit" value="Submit">
-        </form>
+                <label for="endtime">End Time</label><br>
+                <input type="datetime-local" id="endtime" name="endtime"><br><br>
 
+                <input type="submit" class="pushbutton" value="Submit">
+            </form>
+        </div>
     </body>
 </html>

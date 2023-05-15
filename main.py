@@ -1,5 +1,4 @@
 import sqlite3
-import requests
 from uuid import uuid4
 import bcrypt 
 from email_validator import EmailNotValidError, validate_email
@@ -119,11 +118,17 @@ def submit_login():
     # we received from the form from the database.
     try:
         cursor = connection.cursor()
-        hashed_password = cursor.execute("""--sql
+        sql_request = cursor.execute("""--sql
             SELECT hashed_password
             FROM users 
             WHERE email = ?
-        """, [email]).fetchone()[0]
+        """, [email]).fetchone()
+        
+        if sql_request is not None:
+            hashed_password = sql_request[0]
+        else:
+            return redirect("/login?fail=true")
+
     except sqlite3.Error as e:
         return str(e)
 
@@ -148,8 +153,8 @@ def submit_login():
         # Return the response
         return response
     else:
-        # Shame the user for being stupid.
-        return redirect("/login/fail")
+        # Redirect the user back with a fail message
+        return redirect("/login?fail=true")
 
 # Routes the user to the signup page.
 @App.route("/signup")
@@ -218,12 +223,6 @@ def submit_signup():
 @App.route("/home", methods=["GET", "POST"])
 def home():
     return render_template("home.html")
-    
-# Here too.
-@App.route("/login/fail", methods=["GET", "POST"])
-def login_fail():
-    """The function of shame"""
-    return render_template("loginfail.html")
 
 # The page for making a booking after logging in
 @App.route("/makebooking")
@@ -246,11 +245,17 @@ def viewbookings():
     # been validated by our server.
     try:
         cursor = connection.cursor()
-        booker_id = cursor.execute("""--sql
+        sql_request = cursor.execute("""--sql
             SELECT uuid  
             FROM users 
             WHERE email = ?
-        """, [email]).fetchone()[0] 
+        """, [email]).fetchone()
+
+        if sql_request is not None:
+            booker_id = sql_request[0]
+        else:
+            return redirect("/makebooking?fail=true")
+
         cursor.close()
     except sqlite3.Error as e:
         return str(e)
@@ -282,12 +287,16 @@ def submitbooking():
 
     try:
         cursor = connection.cursor()
-        booker_id = cursor.execute("""--sql
+        sql_request = cursor.execute("""--sql
             SELECT uuid  
             FROM users 
             WHERE email = ?
-        """, [email]).fetchone()[0] 
-        cursor.close()
+        """, [email]).fetchone()
+
+        if sql_request is not None:
+            booker_id = sql_request[0]
+        else:
+            return redirect("/makebooking?fail=true")
     except sqlite3.Error as e:
         return str(e)
     
@@ -314,7 +323,7 @@ def submitbooking():
     if num_clashes > 0:
         # Shame the user for not knowing information we have not
         # given them.
-        return redirect("/makebooking/fail-overlap")
+        return redirect("/makebooking?fail=true")
     
     # Finally, if none of the previous guard clauses have triggered,
     # i.e. we have not returned early, try to insert the booking

@@ -1,19 +1,23 @@
+<!DOCTYPE html>
 <html>
     <head>
         <title>
             Alexis' Booking System Start Page
         </title>
-        <link rel="stylesheet" href="styles.css">
+        <!-- Flask needs you to provide the reference for the css as a url_for -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     </head>
 
     <body>
-        <h1>
-            Welcome To Alexis' Booking System
-        </h1>
+        <div class="foreground" align="center">
+            <h1>
+                Welcome To Alexis' Booking System
+            </h1>
 
-        <!-- The href sends a request to the server funtions. -->
-        <a href="login">Login</a>
-        <a href="signup">Sign Up</a>
-
+            <!-- The href sends a request to the server funtions. -->
+            <a href="login"><button class="pushbutton">Login</button></a>
+            <br><br>
+            <a href="signup"><button class="pushbutton">Sign Up</button></a>
+        </>
     </body>
 </html>

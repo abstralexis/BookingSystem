@@ -1,18 +1,21 @@
+<!DOCTYPE html>
 <html>
     <head>
         <title>
             Alexis' Booking System Home Page
         </title>
-        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     </head>
 
     <body>
-        <h1>
-            Welcome!
-        </h1>
+        <div class="foreground" align="center">
+            <h1>
+                Welcome!
+            </h1>
 
-        <!-- The href sends a request to the server functions -->
-        <a href="makebooking">Make a Booking</a>
-        <a href="viewbookings">View your Bookings</a>
-        
+            <!-- The href sends a request to the server functions -->
+            <a href="makebooking"><button class="pushbutton">Make a Booking</button></a>
+            <br><br>
+            <a href="viewbookings"><button class="pushbutton">View your Bookings</button></a>
+        </div>
     </body>
