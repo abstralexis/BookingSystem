@@ -81,7 +81,7 @@ def submit_signup():
         cursor = connection.cursor()
         cursor.execute(
             """--sql
-                INSERT INTO users 
+                INSERT INTO users
                 VALUES (?, ?, ?, ?, ?);
             """, 
             [uuid, email, first_name, last_name, password]
