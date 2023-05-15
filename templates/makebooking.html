@@ -11,6 +11,7 @@
             Make a Booking
         </h1>
 
+        <!-- This once again uses HTML forms to submit a request. -->
         <form action="{{ url_for('submitbooking') }}" method="POST">
             <label for="starttime">Start Time</label><br>
             <input type="datetime-local" id="starttime" name="starttime"><br>

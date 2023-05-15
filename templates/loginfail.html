@@ -1,3 +1,10 @@
+<!--
+    Ideally, we do not use a seperate HTML template for the 
+    pages of shame - we should be able to just add it as a 
+    piece of data through GET and dynamically update the page
+    based off of that data.
+-->
+
 <html>
     <head>
         <title>
@@ -11,6 +18,7 @@
             Login
         </h1>
 
+        <!-- Message of shame. -->
         <h2>Login failed. Please try again.</h2>
 
         <form action="{{ url_for('submit_login') }}" method="POST">

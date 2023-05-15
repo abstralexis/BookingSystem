@@ -11,6 +11,13 @@
             Login
         </h1>
 
+        <!--
+            This is the form for submitting a login. We use the
+            POST method, as well as the url_for() action. This 
+            makes the request for submission send to the route
+            we decided for the server function called 
+            submit_login.
+        -->
         <form action="{{ url_for('submit_login') }}" method="POST">
             <label for="email">Email Address</label><br>
             <input type="email" id="email" name="email"><br>

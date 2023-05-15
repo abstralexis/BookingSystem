@@ -11,6 +11,13 @@
             Sign Up
         </p>
 
+        <!-- 
+            Signup form uses many types of HTML inputs. There
+            are great honking big tables of what each type does,
+            but these are the ones needed here. As you will be able
+            to see in other templates, there are even widget style
+            ones that can be used for datetimes for example.
+        -->
         <form action="{{ url_for('submit_signup') }}" method="POST">
             <label for="first_name">First Name</label><br>
             <input type="text" id="first_name" name="first_name"><br>
