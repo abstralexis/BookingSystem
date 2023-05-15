@@ -321,8 +321,6 @@ def submitbooking():
         return str(e)
     
     if num_clashes > 0:
-        # Shame the user for not knowing information we have not
-        # given them.
         return redirect("/makebooking?fail=true")
     
     # Finally, if none of the previous guard clauses have triggered,
@@ -342,11 +340,6 @@ def submitbooking():
 
     # Redirect to the home page on a booking success.
     return redirect("/home")
-
-@App.route("/makebooking/fail-overlap")
-def makebookingfailoverlap():
-    # Page of shame 2: electric boogaloo
-    return render_template("makebookingfailoverlap.html")
 
 if __name__ == "__main__":
     #main()
