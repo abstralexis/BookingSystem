@@ -1,13 +1,36 @@
+/*
+    The body uses a linear gradient as the background. I prefer to
+    render content above it in individually styled divs - the
+    background is really just to fill in the gaps.
+*/
 body {
     height: 100%;
     margin: 0;
     background: linear-gradient(to bottom, black, darkslateblue);
-    background-repeat: no-repeat;
+    
+    /* This ensures that the gradient doesnt repeat in lines */
+    background-repeat: no-repeat; 
+
+    /*
+        We dont need to scroll it for this application - although a 
+        larger website vertically could benefit from some
+        simple parallax effects that can be created with a
+        background-attachment: scroll.
+    */
     background-attachment: fixed;
+
     color: white;
     font-family: system-ui;
 }
 
+/*
+    We constrain the width of the foreground element to work on
+    all devices, without being too overbearing on larger devices.
+    This is crucial because many of our elements rely on a 
+    parent size for scaling, so we need at least some pixel-based
+    constraints to allow our percentage based constraints to make
+    sense.
+*/
 .foreground {
     max-width: 500px;
     margin: 0 auto;
@@ -22,10 +45,16 @@ table {
     height: 100%;
     border: 2px solid;
     border-color: darkslateblue;
+
+    /* 
+        Keep the border unspaced from the contents of the table,
+        as well as add a curved radius to the corners.
+    */
     border-radius: 10px;
     border-spacing: 0;
 }
 
+/* You can specify the input types when styling. */
 input[type="datetime-local"] {
     background-color: mediumslateblue;
     color: white;
@@ -33,6 +62,13 @@ input[type="datetime-local"] {
     border-radius: 10px;
 }
 
+/*------------------------------------------------------------
+    An interesting property of tr elements in a table is that 
+    you can individually style "nth-child" elements according
+    to a basic pattern match. Here, for example, We have every
+    other row be a darker colour to help break up entries
+    and make it easier for people to read off of the table.
+*/
 tr:nth-child(even) {
     background-color: slateblue;
     text-align: center;
@@ -42,21 +78,36 @@ tr:nth-child(odd) {
     background-color: mediumslateblue;
     text-align: center;
 }
+/*----------------------------------------------------------*/
 
+/* We have the table header be a darker colour than the rest. */
 th {
     background-color: darkslateblue;
 }
 
+/*
+    This is a rounded pushbutton. It attempts to have a width of
+    40% of the parent object, so when used in the foreground
+    element in the website is is an appropriate size on all
+    platforms. The only place it would not work well is outside
+    of a width-constrained object, because it will then try for
+    40% of the whole screen. 
+*/
 .pushbutton {
     width: 40%;
     font-size: large;
     color: white;
     background: mediumslateblue;
+
+    /* This allows for a curved button with no border. */
     border-radius: 10px;
     border: 0;
+
+    /* This is the duration that it takes to transform on hover. */
     transition-duration: 0.2s;
 }
 
+/* Scale on hover with transition duration from parent */ 
 .pushbutton:hover {
     transform: scale(1.1)
 }
