@@ -206,7 +206,8 @@ def submit_signup():
     uuid = str(uuid4())
 
     # Try to insert the values needed into the database for the 
-    # new user.
+    # new user. Something cool is that the function seems to 
+    # sanitise against sql-injection automatically.
     try:
         cursor = connection.cursor()
         cursor.execute(
@@ -261,11 +262,11 @@ def viewbookings():
         if sql_request is not None:
             booker_id = sql_request[0]
         else:
-            return redirect("/makebooking?fail=true")
+            return redirect("/viewbookings?fail=true")
 
         cursor.close()
     except sqlite3.Error as e:
-        return str(e)
+        return redirect("/viewbookings?fail=true")
 
     # Using users.uuid, select the start and end times for all 
     # bookings in bookings where the uuid from users matches the
@@ -305,7 +306,7 @@ def submitbooking():
         else:
             return redirect("/makebooking?fail=true")
     except sqlite3.Error as e:
-        return str(e)
+        return redirect("/makebooking?fail=true")
     
     # This gets the number of clashes with the proposed booking time
     # by selecting the entry (uuid only to be lightweight) of any
@@ -343,7 +344,7 @@ def submitbooking():
         connection.commit()
         connection.close()
     except sqlite3.Error as e:
-        return str(e)
+        redirect("/makebooking?fail=true")
 
     # Redirect to the home page on a booking success.
     return redirect("/home")
