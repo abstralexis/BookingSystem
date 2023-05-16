@@ -13,6 +13,29 @@
                 Login
             </h1>
 
+            <!--
+                We should probably implement an account locking
+                system for a number of fail requests, or some
+                sort of rate limiting functionality because
+                the server seems like it would not scale well in
+                terms of performance.
+
+                According to many sources, Flask is intended to be
+                very scalable, so maybe the performance issues are
+                down to the sqlite server interaction. These 
+                issues may be able to be solved with asynchronous
+                programming for certain functions rather than
+                synchronous (serial). 
+
+                SQLite says that they use polynomial-time algorithms,
+                (O(n^k)), which in theory should not scale well but
+                at least its not exponential. They say that they
+                have algorithms that allow for optimisations with
+                joins, so the actual time complexity for my
+                implementation may be lower, like a complexity
+                closer to O(n log n).
+                Source: https://www.sqlite.org/optoverview.html 
+            -->
             {% if request.args.fail == "true" %}
                 <h3>Login failed. Please try again.</h3>
             {% endif %}

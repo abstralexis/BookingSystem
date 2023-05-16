@@ -13,6 +13,21 @@
                 Make a Booking
             </h1>
 
+            <!--
+                It would be better if the failure types were returned
+                so a custom message can be returned for an internal
+                server error as compared to sending a message that
+                says that they should try a different time.
+
+                It would also be beneficial to implement some
+                functionality for viewing potential booking times,
+                as well as some functionality for having minimum and
+                maximum booking times, as well as making sure that 
+                booking dates are semantically correct (i.e.
+                making sure that they don't book in the past,
+                and ensuring that the start date is before the end
+                date).
+            -->
             {% if request.args.get("fail") == "true" %}
             <h3>Booking request failed. Try another time.</h3>
             {% endif %}

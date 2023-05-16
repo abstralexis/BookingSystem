@@ -14,6 +14,16 @@
             </h1>
 
             {% if request.args.fail == "true" %}
+            <!--
+                This response may not be the most accurate. In the 
+                case where the user has inputted an email address 
+                where the domain does not accept email, the user will
+                be told that the email is already in use rather than
+                the message that is most accurate. It may be too
+                much trouble to implement a check for this, for an 
+                output that makes the user do the same thing anyway
+                (that being, try a different email).
+            -->
                 <h3>Email already in use.</h3>
             {% endif %}
 
@@ -23,6 +33,10 @@
                 but these are the ones needed here. As you will be able
                 to see in other templates, there are even widget style
                 ones that can be used for datetimes for example.
+
+                Add the required keyword when the input is required. In
+                my case, we need everything to be required so that we
+                don't get blank entries in the database.
             -->
             <form action="{{ url_for('submit_signup') }}" method="POST">
                 <label for="first_name">First Name</label><br>
