@@ -220,7 +220,7 @@ def submit_signup():
         connection.commit()
         connection.close()
     except sqlite3.Error as e:
-        return str(e)
+        return redirect("/signup?fail=true")
 
     # Redirect to the login page on a successful signup.
     return redirect("/login")

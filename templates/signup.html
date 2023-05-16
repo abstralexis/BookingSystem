@@ -13,6 +13,10 @@
                 Sign Up
             </h1>
 
+            {% if request.args.fail == "true" %}
+                <h3>Email already in use.</h3>
+            {% endif %}
+
             <!-- 
                 Signup form uses many types of HTML inputs. There
                 are great honking big tables of what each type does,
@@ -22,16 +26,16 @@
             -->
             <form action="{{ url_for('submit_signup') }}" method="POST">
                 <label for="first_name">First Name</label><br>
-                <input class="input" type="text" id="first_name" name="first_name"><br><br>
+                <input class="input" type="text" id="first_name" name="first_name" required><br><br>
 
                 <label for="last_name">Last Name</label><br>
-                <input class="input" type="text" id="last_name" name="last_name"><br><br>
+                <input class="input" type="text" id="last_name" name="last_name" required><br><br>
 
                 <label for="email">Email Address</label><br>
-                <input type="email" class="input" id="email" name="email"><br><br>
+                <input type="email" class="input" id="email" name="email" required><br><br>
 
                 <label for="password">Password</label><br>
-                <input class="input" type="password" id="password" name="password"><br><br><br>
+                <input class="input" type="password" id="password" name="password" required><br><br><br>
 
                 <input class="pushbutton" type="submit" value="Submit">
             </form>

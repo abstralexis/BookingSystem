@@ -20,10 +20,10 @@
             <!-- This once again uses HTML forms to submit a request. -->
             <form action="{{ url_for('submitbooking') }}" method="POST">
                 <label for="starttime">Start Time</label><br>
-                <input type="datetime-local" id="starttime" name="starttime"><br><br>
+                <input type="datetime-local" id="starttime" name="starttime" required><br><br>
 
                 <label for="endtime">End Time</label><br>
-                <input type="datetime-local" id="endtime" name="endtime"><br><br>
+                <input type="datetime-local" id="endtime" name="endtime" required><br><br>
 
                 <input type="submit" class="pushbutton" value="Submit">
             </form>

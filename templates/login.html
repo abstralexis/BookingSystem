@@ -26,10 +26,10 @@
             -->
             <form action="{{ url_for('submit_login') }}" method="POST">
                 <label for="email">Email Address</label><br>
-                <input class="input" type="email" id="email" name="email"><br><br>
+                <input class="input" type="email" id="email" name="email" required><br><br>
 
                 <label for="password">Password</label><br>
-                <input class="input" type="password" id="password" name="password"><br><br><br>
+                <input class="input" type="password" id="password" name="password" required><br><br><br>
 
                 <input class="pushbutton" type="submit" value="Submit">
             </form>
