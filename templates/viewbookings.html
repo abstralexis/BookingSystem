@@ -27,7 +27,7 @@
                 Your Bookings
             </h1>
 
-            {% if request.args.fail == "fail" %}
+            {% if request.args.get("fail") == "fail" %}
                 <h3>Request failed.</h3>
             {% endif %}
 

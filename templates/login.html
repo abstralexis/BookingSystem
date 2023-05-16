@@ -36,7 +36,7 @@
                 closer to O(n log n).
                 Source: https://www.sqlite.org/optoverview.html 
             -->
-            {% if request.args.fail == "true" %}
+            {% if request.args.get("fail") == "true" %}
                 <h3>Login failed. Please try again.</h3>
             {% endif %}
 

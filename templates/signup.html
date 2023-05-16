@@ -13,7 +13,7 @@
                 Sign Up
             </h1>
 
-            {% if request.args.fail == "true" %}
+            {% if request.args.get("fail") == "true" %}
             <!--
                 This response may not be the most accurate. In the 
                 case where the user has inputted an email address 
