@@ -67,13 +67,13 @@ conn.close()
 def index():
     return render_template("index.html")
 
-# This is a sample request form method which is not accessible from
-# the HTML anymore. Ignore it if you want.
-@App.route("/myform", methods=["POST"])
-def myform():
-    something = request.form["something"]
-    print(something)
-    return Response("", 200)
+# # This is a sample request form method which is not accessible from
+# # the HTML anymore. Ignore it if you want.
+# @App.route("/myform", methods=["POST"])
+# def myform():
+#     something = request.form["something"]
+#     print(something)
+#     return Response("", 200)
 
 # This is the route we take the user to if they press the Login
 # hyperlink in index.html.
@@ -108,7 +108,7 @@ def submit_login():
         emailinfo = validate_email(request.form["email"])
         email = emailinfo.normalized
     except EmailNotValidError as enve:
-        return str(enve)
+        return redirect("/login?fail=true")
     
     # Get the password from the form in the request passed to
     # this function from the client via the App decorator
@@ -136,7 +136,7 @@ def submit_login():
             return redirect("/login?fail=true")
 
     except sqlite3.Error as e:
-        return str(e)
+        return redirect("/login?fail=true")
 
     # Use the bcrypt checkpw function to check if the password input
     # matches the hash for the hashed password. bcrypt handles the
@@ -184,7 +184,7 @@ def submit_signup():
         emailinfo = validate_email(request.form["email"])
         email = emailinfo.normalized
     except EmailNotValidError as enve:
-        return str(enve)
+        return redirect("/signup?fail=true")
     
     # Generate a salt for the hashed password. A salt is a random
     # value that is appended so that the hash outputs a different 
@@ -281,7 +281,7 @@ def viewbookings():
         # Send the data alongside the HTML template.
         return render_template("viewbookings.html", data=data)
     except sqlite3.Error as e:
-        return str(e)
+        return redirect("/viewbookings?fail=true")
 
 # This is the function for submitting a booking. This once
 # again uses previous principles, including accessing the cookie.
@@ -326,7 +326,7 @@ def submitbooking():
         """, [start, end]).fetchall())
         cursor.close()
     except sqlite3.Error as e:
-        return str(e)
+        return redirect("/makebooking?fail=true")
     
     if num_clashes > 0:
         return redirect("/makebooking?fail=true")
