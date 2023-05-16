@@ -117,6 +117,12 @@ def submit_login():
     # This code attempts to get the hashed password for the email
     # we received from the form from the database.
     try:
+        # Crucially, this code has had to be edited to avoid Python
+        # runtime errors from trying too fetch and then index a 
+        # request where no matching email has been found in the
+        # database. It probably should be put into its own function
+        # as it has to repeat many times. So, we redirect with the
+        # fail query in the html address as True.
         cursor = connection.cursor()
         sql_request = cursor.execute("""--sql
             SELECT hashed_password
@@ -147,7 +153,8 @@ def submit_login():
         # session. This can then be used to show logged in info
         # sensitive to the account e.g the bookings. This allows
         # For dynamically updating the HTML according to who is
-        # logged in.
+        # logged in. This lets the Jinja template decide whether to 
+        # render the "login failed..." message.
         response.set_cookie("userEmail", email)
         
         # Return the response
